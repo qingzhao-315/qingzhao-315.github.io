@@ -81,8 +81,13 @@
     <div class="lx-entry padding">
       <div>
         <hr>
-<p>小程序实战 07-首页-搜索框</p>
+<p>title:小程序实战 07-首页-搜索框</p>
 <hr>
+<ul>
+<li>搜索框</li>
+</ul>
+<a id="more"></a>
+
 <p>这次要做一个首页的搜索框，因为有很多页面都要用搜索框，所以直接做成一个自定义组件，可以在很多页面中用。</p>
 <ul>
 <li>有三个步骤<ol>
@@ -92,7 +97,7 @@
 </li>
 </ul>
 <p>​    如下图声明方法，要先复制自定义组件的相对路径，然后反斜杠要注意换，由于是相对路径，要加两个../../这就是调用了</p>
-<p><img src="C:%5CUsers%5C%E8%B4%BA%E9%9B%AF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200406193647419.png" alt="image-20200406193647419"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200409170520866.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <ol start="3">
 <li><p>包起来引用</p>
 <p>首先要在首页的.wxml文件中写上</p>
@@ -102,7 +107,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.search_input&#123;</span><br><span class="line">    height: 90rpx;</span><br><span class="line">    padding: 10rpx;</span><br><span class="line">    background-color: var(--themeColor);&#x2F;&#x2F;适应主题颜色</span><br><span class="line">    navigator&#123; &#x2F;&#x2F;各种属性参数</span><br><span class="line">      height: 100%;</span><br><span class="line">      display: flex;</span><br><span class="line">      justify-content: center;</span><br><span class="line">      align-items: center;</span><br><span class="line">      background-color: #fff;</span><br><span class="line">      border-radius: 15rpx;</span><br><span class="line">      color: #666;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>效果图如下</p>
-<p><img src="C:%5CUsers%5C%E8%B4%BA%E9%9B%AF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200407212330939.png" alt="image-20200407212330939"></p>
+<p><img src="https://img-blog.csdnimg.cn/20200409170654148.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 </li>
 <li><p>如果要点击搜索框跳转的话在.wxml中添加代码</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;search_input&quot;&gt;</span><br><span class="line">    &lt;navigator url&#x3D;&quot;&#x2F;pages&#x2F;search&#x2F;index&quot; open-type&#x3D;&quot;navigate&quot;&gt;</span><br><span class="line">        搜索</span><br><span class="line">    &lt;&#x2F;navigator&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
@@ -120,12 +125,12 @@
 <div class="lx-navigation">
 	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
 		<div class="overlay"></div>
-		<a class="copy" href="#">
+		<a class="copy" href="/2020/04/07/blog4/">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Next</span>
-						<h3>No newer post</h3>
+						<h3>blog4</h3>
 					</div>
 				</div>
 			</div>
@@ -133,12 +138,12 @@
 	</div>
         <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
 		<div class="overlay"></div>
-		<a class="copy" href="/2020/04/06/blog2/">
+		<a class="copy" href="/2020/04/06/blog1/">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Prev</span>
-						<h3>blog2</h3>
+						<h3>小程序实战 0...</h3>
 					</div>
 				</div>
 			</div>

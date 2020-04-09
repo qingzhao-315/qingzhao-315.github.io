@@ -81,50 +81,24 @@
 
   <div class="lx-entry padding">
     <div>
-      <h2 class="title"><a href="/2020/04/06/blog3/">blog3</a></h2>
-      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2020-04-06</span>
+      <h2 class="title"><a href="/2020/04/07/blog4/">blog4</a></h2>
+      <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2020-04-07</span>
       <p><hr>
-<p>小程序实战 07-首页-搜索框</p>
-<hr>
-<p>这次要做一个首页的搜索框，因为有很多页面都要用搜索框，所以直接做成一个自定义组件，可以在很多页面中用。</p>
-<ul>
-<li>有三个步骤<ol>
-<li>先在component文件夹下创建一个文件夹，直接从小程序那里右键新添一个component，就直接生成四种文件</li>
-<li>声明引用，方法：哪个页面要用这个自定义组件，就在哪个页面的.json文件进行声明，</li>
-</ol>
-</li>
-</ul>
-<p>​    如下图声明方法，要先复制自定义组件的相对路径，然后反斜杠要注意换，由于是相对路径，要加两个../../这就是调用了</p>
-<p><img src="C:%5CUsers%5C%E8%B4%BA%E9%9B%AF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200406193647419.png" alt="image-20200406193647419"></p>
-<ol start="3">
-<li><p>包起来引用</p>
-<p>首先要在首页的.wxml文件中写上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;index&quot;&gt;</span><br><span class="line">    &lt;SearchInput&gt;    &lt;&#x2F;SearchInput&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这是引用，这样才会在首页的页面出现搜索框，然后在组件的.less中添加组件的属性代码，（注意，.less不支持，要先安装插件，并且在全局中配置自动生成.wxss。）添加一下代码，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.search_input&#123;</span><br><span class="line">    height: 90rpx;</span><br><span class="line">    padding: 10rpx;</span><br><span class="line">    background-color: var(--themeColor);&#x2F;&#x2F;适应主题颜色</span><br><span class="line">    navigator&#123; &#x2F;&#x2F;各种属性参数</span><br><span class="line">      height: 100%;</span><br><span class="line">      display: flex;</span><br><span class="line">      justify-content: center;</span><br><span class="line">      align-items: center;</span><br><span class="line">      background-color: #fff;</span><br><span class="line">      border-radius: 15rpx;</span><br><span class="line">      color: #666;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>效果图如下</p>
-<p><img src="C:%5CUsers%5C%E8%B4%BA%E9%9B%AF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200407212330939.png" alt="image-20200407212330939"></p>
-</li>
-<li><p>如果要点击搜索框跳转的话在.wxml中添加代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;view class&#x3D;&quot;search_input&quot;&gt;</span><br><span class="line">    &lt;navigator url&#x3D;&quot;&#x2F;pages&#x2F;search&#x2F;index&quot; open-type&#x3D;&quot;navigate&quot;&gt;</span><br><span class="line">        搜索</span><br><span class="line">    &lt;&#x2F;navigator&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ol>
-<p>就可以直接跳转页面了。</p>
-</p>
-      <div class="post-button"><a class="btn" href="/2020/04/06/blog3/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+<h2 id="title-小日记-2020-04-09"><a href="#title-小日记-2020-04-09" class="headerlink" title="title:小日记 2020-04-09"></a>title:小日记 2020-04-09</h2></p>
+      <div class="post-button"><a class="btn" href="/2020/04/07/blog4/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
     <div>
-      <h2 class="title"><a href="/2020/04/06/blog2/">blog2</a></h2>
+      <h2 class="title"><a href="/2020/04/06/blog3/">blog3</a></h2>
       <span class="lx-post-detail"><i class="fa fa-calendar-o"></i> 2020-04-06</span>
-      <p></p>
-      <div class="post-button"><a class="btn" href="/2020/04/06/blog2/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
+      <p><hr>
+<p>title:小程序实战 07-首页-搜索框</p>
+<hr>
+<ul>
+<li>搜索框</li>
+</ul></p>
+      <div class="post-button"><a class="btn" href="/2020/04/06/blog3/" rel="noopener"><i class="fa fa-angle-double-right fa-fw"></i>Read More</a></div>
     </div>
   </div>
   <div class="lx-entry padding">
