@@ -85,6 +85,7 @@
 <li>一些.wxml知识（内容）</li>
 <li>一些.wxss知识（样式设计）</li>
 <li>一些.js知识（函数）</li>
+<li>一些全局app.json的属性</li>
 </ul>
 <a id="more"></a>
 
@@ -100,13 +101,14 @@
 <ul>
 <li><h3 id="一些-wxml知识（内容）"><a href="#一些-wxml知识（内容）" class="headerlink" title="一些.wxml知识（内容）"></a>一些.wxml知识（内容）</h3><ol>
 <li>wxml的注释方式：&lt;！–  等等等   –&gt;</li>
-<li>在wxml中内容单元封装在<view>等等等</view>中</li>
-<li>图片的书写格式<image></image>（图片文件要先新加一个文件夹和page一个层级下，新建images）</li>
-<li>添加图片的方法是在&lt;image  src=’相对路径（可以去复制，但是要注意反斜杠变化’）</image>，要先在</li>
-<li>文字的书写格式<text>内容</text></li>
-<li>如果文字的内容中间是<text></text>表示内容是可动态变化的，</li>
-<li>按钮的书写格式<button>按钮上想写的字</button></li>
+<li>在wxml中内容单元封装在<code>&lt;view&gt;等等等&lt;/view&gt;</code>中</li>
+<li>图片的书写格式<code>&lt;image&gt;&lt;/image&gt;</code>（图片文件要先新加一个文件夹和page一个层级下，新建images）</li>
+<li>添加图片的方法是在<code>&lt;image  src=&#39;相对路径（可以去复制，但是要注意反斜杠变化&#39;）&lt;/image&gt;</code>，要先在</li>
+<li>文字的书写格式<code>&lt;text&gt;内容&lt;/text&gt;</code></li>
+<li>如果文字的内容中间是<code>&lt;text&gt;&lt;/text&gt;</code>表示内容是可动态变化的，是个变量。但是这个变量需要在.js文件中的data：{}中来写入</li>
+<li>按钮的书写格式<code>&lt;button&gt;按钮上想写的字&lt;/button&gt;</code></li>
 <li>以上的都是在wxml中添加完成，想要布局更好看就要去wxss中布局</li>
+<li>在标签中两个花括号之间包的叫变量，是可以改变的</li>
 </ol>
 </li>
 </ul>
@@ -124,27 +126,45 @@
 <ol>
 <li><p>直接在wxss中写成image{}，大括号里填属性<img src="https://img-blog.csdnimg.cn/20200410175749212.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 </li>
-<li><p>在wxml中的<image></image>中也这样在可以加样式class：这样在wxss中也要写样式.等等等</p>
+<li><p>在wxml中的<code>&lt;image&gt;&lt;/image&gt;</code>中也这样在可以加样式class：这样在wxss中也要写样式.等等等</p>
 </li>
 </ol>
 </li>
 <li><p>文本样式的话跟图片一样，也是可以直接在wxss中text{}中加东西<img src="https://img-blog.csdnimg.cn/20200410192829764.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 </li>
-<li><p>想要实现点击按钮然后实现某种功能则在.wxss中的&lt;button “属性内容”&gt;中加上限定，<img src="https://img-blog.csdnimg.cn/20200410193933531.png" alt="在这里插入图片描述"></p>
+<li><p>想要实现点击按钮然后实现某种功能则在.wxss中的<code>&lt;button “属性内容”&gt;</code>中加上限定，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button open-type&#x3D;&#39;getUserInfo&#39; bindgetuserinfo&#x3D;&#39;getMyInfo&#39;&gt;点击获取头像和昵称&lt;&#x2F;button&gt;</span><br><span class="line">  &lt;!-- open-type&#x3D;&#39;getUserInfo 表示激活获取微信用户信息功能&#39; --&gt;</span><br><span class="line">  &lt;!-- bindgetuserinfo&#x3D;&#39;getMyInfo&#39; 表示获得的数据将传递给自定义函数getMyInfo,可以自己取，bind表示将获取的数据绑定给自定义函数--&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>然后在.js中写上函数<img src="https://img-blog.csdnimg.cn/20200410194227476.png" alt="在这里插入图片描述">就调用成功了。但是这些信息都还只是在控制台上，没有在页面中显示。</p>
+<li><p>然后在.js中写上函数，这个函数是要在data同排下的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getMyInfo:function(e)&#123;</span><br><span class="line">    console.log(e.detail.userInfo)&#x2F;&#x2F;点击获取输入信息</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就调用成功了。但是这些信息都还只是在控制台上，没有在页面中显示。</p>
 </li>
 </ol>
 <ul>
-<li><h3 id="一些-js知识-函数"><a href="#一些-js知识-函数" class="headerlink" title="一些.js知识(函数)"></a>一些.js知识(函数)</h3></li>
+<li><h3 id="一些-js知识-函数，变量"><a href="#一些-js知识-函数，变量" class="headerlink" title="一些.js知识(函数，变量)"></a>一些.js知识(函数，变量)</h3></li>
 </ul>
 <ol>
 <li><p>.js中函数的定义方法：</p>
 <p>函数名+“：”+function(“参数列表（可不写）”){“函数内容”}，</p>
 <p>！注意:两个{}{}之间要有逗号,</p>
 </li>
-<li></li>
+<li><p>.js的data{}就是存放变量的地方，所以在这个地方写上变量，而变量是在.wxml中两个标签的，这个就表示变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;text&gt;&#123;&#123;name&#125;&#125;&lt;&#x2F;text&gt;    &#x2F;&#x2F;在.wxml中先声明变量</span><br><span class="line"></span><br><span class="line">data:&#123;</span><br><span class="line">	name:&#39;hello world&#39;   &#x2F;&#x2F;在.js中写变量</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>图片的路径也可以写成变量，就是src，同样也写在data中</p>
+</li>
+<li><p>如果想更新变量内容，比如说获取昵称和头像就在原先定义的函数里去调用，修改变量的方法：this.setData({  })</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;.js中</span><br><span class="line">data: &#123;</span><br><span class="line">    name:&#39;Hello World&#39;,</span><br><span class="line">    src:&#39;&#x2F;images&#x2F;weixin.jpg&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  getMyInfo:function(e)&#123;</span><br><span class="line">    console.log(e.detail.userInfo)  &#x2F;&#x2F;后面不用逗号</span><br><span class="line">    let info&#x3D;e.detail.userInfo;  &#x2F;&#x2F;定义一个变量为取到的那个用户信息</span><br><span class="line">    this.setData(&#123;            </span><br><span class="line">      name:info.nickName,      &#x2F;&#x2F;更新名称</span><br><span class="line">      src:info.avatarUrl        &#x2F;&#x2F;更新图片来源</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
 </ol>
+<ul>
+<li><h3 id="一些全局app-json的属性"><a href="#一些全局app-json的属性" class="headerlink" title="一些全局app.json的属性"></a>一些全局app.json的属性</h3><p>外观整体样式的话，用windows中去加，可以显示上部分的栏框颜色和小程序的名字啥的</p>
+</li>
+</ul>
 
       </div>
     </div>
