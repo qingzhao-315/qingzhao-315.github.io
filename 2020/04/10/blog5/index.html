@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme-color" content=#58b77a>
-  <title>小日记 2020-04-09 | 庆昭</title>
+  <title>更细致的理解小程序(获取用户头像和昵称) | 庆昭</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="He Wen">
   <meta name="keywords" content="">
@@ -69,8 +69,8 @@
   <div class="overlay">
   <div class="page-title">
     <div class="avatar"><a href="/"><img src="https://ae01.alicdn.com/kf/H16588a5d05b04be29b8fe031826a347dp.jpg"></a></div>
-    <span>2020-04-07</span>
-    <h2>小日记 2020-04-09</h2>
+    <span>2020-04-10</span>
+    <h2>更细致的理解小程序(获取...</h2>
     
     </div>
 </div>
@@ -81,12 +81,70 @@
     <div class="lx-entry padding">
       <div>
         <ul>
-<li>一些碎碎念</li>
+<li>各个页面的功能</li>
+<li>一些.wxml知识（内容）</li>
+<li>一些.wxss知识（样式设计）</li>
+<li>一些.js知识（函数）</li>
 </ul>
 <a id="more"></a>
-<p>唉，太难了，没想到小程序还要去学一些后端的东西，我看那个项目今年是交不了工了。</p>
-<p>后悔大一的时候没有去学一些东西，已经落后别人不少了，不过感觉前端的东西我真的挺感兴趣的，打算最近把前端再好好系统的学一下，自己设计网页啊啥的我觉得后面也还可以，计算机类的东西真的好多，学习道路还很长，就像学长说的东西越学越多，但是要找到自己的方向。我就觉得前端可能还挺好玩的，先学学嘛。先把兴趣培养出来。</p>
-<p><img src="https://img-blog.csdnimg.cn/2020040917161393.png" alt="在这里插入图片描述"></p>
+
+<ul>
+<li><h3 id="各个页面的功能"><a href="#各个页面的功能" class="headerlink" title="各个页面的功能"></a>各个页面的功能</h3></li>
+</ul>
+<ol>
+<li>js:页面逻辑实现，（就是如果点击一个图标会跳转到另一个程序或者什么的）</li>
+<li>json：负责标题栏和一些状态栏</li>
+<li>wxml:管理页面有什么内容</li>
+<li>wxss：页面排布，（就是把有的东西排列成自己写想要的样式）</li>
+</ol>
+<ul>
+<li><h3 id="一些-wxml知识（内容）"><a href="#一些-wxml知识（内容）" class="headerlink" title="一些.wxml知识（内容）"></a>一些.wxml知识（内容）</h3><ol>
+<li>wxml的注释方式：&lt;！–  等等等   –&gt;</li>
+<li>在wxml中内容单元封装在<view>等等等</view>中</li>
+<li>图片的书写格式<image></image>（图片文件要先新加一个文件夹和page一个层级下，新建images）</li>
+<li>添加图片的方法是在&lt;image  src=’相对路径（可以去复制，但是要注意反斜杠变化’）</image>，要先在</li>
+<li>文字的书写格式<text>内容</text></li>
+<li>如果文字的内容中间是<text></text>表示内容是可动态变化的，</li>
+<li>按钮的书写格式<button>按钮上想写的字</button></li>
+<li>以上的都是在wxml中添加完成，想要布局更好看就要去wxss中布局</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><h3 id="一些-wxss知识（样式设计）"><a href="#一些-wxss知识（样式设计）" class="headerlink" title="一些.wxss知识（样式设计）"></a>一些.wxss知识（样式设计）</h3></li>
+</ul>
+<ol>
+<li><p>wxss注释方法：/* 等等等  */</p>
+</li>
+<li><p>如果要布局要先在wxml中的view开始括号里加一个 class =‘等等等’（等等等是自取的，class不能变）<img src="https://img-blog.csdnimg.cn/20200410174343905.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>然后在wxss中中进行样式设计：要先加个点·然后接class里面的名字（ag：.container{}）（在view中就是全局布局）</p>
+</li>
+<li><p>如果说是图片的的样式有两种方法</p>
+<ol>
+<li><p>直接在wxss中写成image{}，大括号里填属性<img src="https://img-blog.csdnimg.cn/20200410175749212.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>在wxml中的<image></image>中也这样在可以加样式class：这样在wxss中也要写样式.等等等</p>
+</li>
+</ol>
+</li>
+<li><p>文本样式的话跟图片一样，也是可以直接在wxss中text{}中加东西<img src="https://img-blog.csdnimg.cn/20200410192829764.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>想要实现点击按钮然后实现某种功能则在.wxss中的&lt;button “属性内容”&gt;中加上限定，<img src="https://img-blog.csdnimg.cn/20200410193933531.png" alt="在这里插入图片描述"></p>
+</li>
+<li><p>然后在.js中写上函数<img src="https://img-blog.csdnimg.cn/20200410194227476.png" alt="在这里插入图片描述">就调用成功了。但是这些信息都还只是在控制台上，没有在页面中显示。</p>
+</li>
+</ol>
+<ul>
+<li><h3 id="一些-js知识-函数"><a href="#一些-js知识-函数" class="headerlink" title="一些.js知识(函数)"></a>一些.js知识(函数)</h3></li>
+</ul>
+<ol>
+<li><p>.js中函数的定义方法：</p>
+<p>函数名+“：”+function(“参数列表（可不写）”){“函数内容”}，</p>
+<p>！注意:两个{}{}之间要有逗号,</p>
+</li>
+<li></li>
+</ol>
 
       </div>
     </div>
@@ -95,12 +153,12 @@
 <div class="lx-navigation">
 	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
 		<div class="overlay"></div>
-		<a class="copy" href="/2020/04/10/blog5/">
+		<a class="copy" href="#">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Next</span>
-						<h3>更细致的理解小...</h3>
+						<h3>No newer post</h3>
 					</div>
 				</div>
 			</div>
@@ -108,12 +166,12 @@
 	</div>
         <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
 		<div class="overlay"></div>
-		<a class="copy" href="/2020/04/06/blog3/">
+		<a class="copy" href="/2020/04/07/blog4/">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Prev</span>
-						<h3>小程序实战 0...</h3>
+						<h3>小日记 202...</h3>
 					</div>
 				</div>
 			</div>
