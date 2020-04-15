@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#58b77a>
+  <title>小程序详学-查询天气 | 庆昭</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="He Wen">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.3.9',
+    localsearch:{
+      "enable": false,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: '-'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/css/main.min.css">
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Fira Code', monospace;
+    }
+    html {
+      font-family: sans-serif;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: sans-serif;
+    }
+    .menu-container{
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "greenish",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+<div class="single">
+
+<div id="page">
+<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/post_cover.jpeg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="https://ae01.alicdn.com/kf/H16588a5d05b04be29b8fe031826a347dp.jpg"></a></div>
+    <span>2020-04-14</span>
+    <h2>小程序详学-查询天气</h2>
+    
+    </div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <p><strong>- 新知识：地区选择器：picker</strong> </p>
+<a id="more"></a>
+
+<ul>
+<li>预期目标如下图所示：</li>
+</ul>
+<img src="https://img-blog.csdnimg.cn/2020041511392828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:50%;" />
+
+<ul>
+<li><p>首先分析这个页面的布局：</p>
+<ol>
+<li><p>可以分为四块位置，分别为：</p>
+<p>区域1：地区选择器，要用picker组件</p>
+<p>区域2：文本区域，</p>
+<p>区域3：图片区域，</p>
+<p>区域4：多行天气信息</p>
+</li>
+<li><p>然后是垂直布局，参照具体上一次的wxss布局详讲</p>
+</li>
+</ol>
+</li>
+<li><p>页面的wxml代码</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;view <span class="class"><span class="keyword">class</span>='<span class="title">container</span>'&gt;              //用了<span class="title">container</span></span></span><br><span class="line"><span class="class">  &lt;!-- 区域1：地区选择器 --&gt;</span></span><br><span class="line"><span class="class">  &lt;picker mode='region' bindchange='changeRegion'&gt;</span></span><br><span class="line">    &lt;view&gt;&#123;&#123;region&#125;&#125;&lt;/view&gt;</span><br><span class="line">  &lt;/picker&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 区域<span class="number">2</span>：文本区域 --&gt;</span><br><span class="line">  &lt;!-- 这些都是实时更新的数据 --&gt;</span><br><span class="line">  &lt;text&gt;&#123;&#123;now.tmp&#125;&#125;℃ &#123;&#123;now.cond_txt&#125;&#125;&lt;/text&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!-- 区域<span class="number">3</span>：图片区域 --&gt;</span><br><span class="line">  &lt;!-- 这些都是实时更新的数据 --&gt;</span><br><span class="line">  &lt;image src='/images/&#123;&#123;now.cond_code&#125;&#125;.png'&gt;&lt;/image&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- 区域<span class="number">4</span>：多行天气信息 --&gt;</span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span>='<span class="title">detail</span>'&gt;               //用了<span class="title">detail</span></span></span><br><span class="line"><span class="class">    &lt;view class='bar'&gt;</span></span><br><span class="line"><span class="class">      &lt;view class='box'&gt;湿度&lt;/view&gt;</span></span><br><span class="line"><span class="class">      &lt;view class='box'&gt;气压&lt;/view&gt;</span></span><br><span class="line"><span class="class">      &lt;view class='box'&gt;能见度&lt;/view&gt;</span></span><br><span class="line"><span class="class">    &lt;/view&gt;</span></span><br><span class="line"><span class="class">    &lt;view class='bar'&gt;</span></span><br><span class="line">      &lt;view class='box'&gt;&#123;&#123;now.hum&#125;&#125;%&lt;/view&gt;</span><br><span class="line">      &lt;view class='box'&gt;&#123;&#123;now.pres&#125;&#125;hPa&lt;/view&gt;</span><br><span class="line">      &lt;view class='box'&gt;&#123;&#123;now.vis&#125;&#125;Km&lt;/view&gt;</span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">    &lt;view <span class="class"><span class="keyword">class</span>='<span class="title">bar</span>'&gt;</span></span><br><span class="line"><span class="class">      &lt;view class='box'&gt;风向&lt;/view&gt;</span></span><br><span class="line"><span class="class">      &lt;view class='box'&gt;风速&lt;/view&gt;</span></span><br><span class="line"><span class="class">      &lt;view class='box'&gt;风力&lt;/view&gt;</span></span><br><span class="line"><span class="class">    &lt;/view&gt;</span></span><br><span class="line"><span class="class">    &lt;view class='bar'&gt;</span></span><br><span class="line"><span class="class">    	&lt;!-- 这些都是实时更新的数据 --&gt;</span></span><br><span class="line">      &lt;view class='box'&gt;&#123;&#123;now.wind_dir&#125;&#125;&lt;/view&gt;</span><br><span class="line">      &lt;view class='box'&gt;&#123;&#123;now.wind_spd&#125;&#125; Km/h&lt;/view&gt;</span><br><span class="line">      &lt;view class='box'&gt;&#123;&#123;now.wind_sc&#125;&#125; 级&lt;/view&gt;</span><br><span class="line">    &lt;/view&gt;</span><br><span class="line">  &lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>页面的wxss代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//整个容器，全局的布局，垂直分布，占满</span></span><br><span class="line">.container&#123;</span><br><span class="line">  <span class="built_in">height</span>: <span class="number">100</span>vh;</span><br><span class="line">  <span class="built_in">display</span>: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">  align-items: center;</span><br><span class="line">  justify-content: space-around;<span class="comment">//均匀分布在整个页面</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//区域4的 多行天气的分布</span></span><br><span class="line">.detail&#123;</span><br><span class="line">  <span class="built_in">width</span>: <span class="number">100</span>%;</span><br><span class="line">  <span class="built_in">display</span>: flex;</span><br><span class="line">  flex-direction: column;</span><br><span class="line">&#125;</span><br><span class="line">.bar&#123;                                <span class="comment">//每一行的分布</span></span><br><span class="line">  <span class="built_in">display</span>: flex;   <span class="comment">//水平布局</span></span><br><span class="line">  flex-direction: row;</span><br><span class="line">  margin:<span class="number">20</span>rpx <span class="number">0</span>;  <span class="comment">//设置外边距</span></span><br><span class="line">&#125;</span><br><span class="line">.box&#123;                           <span class="comment">//每一行的里面的文字属性</span></span><br><span class="line">  <span class="built_in">width</span>: <span class="number">33.3</span>%;<span class="comment">//有三个，三个均匀分布</span></span><br><span class="line">  <span class="built_in">text</span>-align: center;<span class="comment">//让文字布局在中央部分</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//区域2的文本区域的格式（全局只有一个text）</span></span><br><span class="line"><span class="built_in">text</span>&#123;</span><br><span class="line">  font-<span class="built_in">size</span>: <span class="number">80</span>rpx;</span><br><span class="line">  color: #<span class="number">3</span>C5F81;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//区域3图片样式</span></span><br><span class="line"><span class="built_in">image</span>&#123;</span><br><span class="line">  <span class="built_in">width</span>: <span class="number">220</span>rpx;<span class="comment">//规定一个宽度就行了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>这样就把页面布置好了，但是里面的picker组件需要选的时候实时更新，不能写死</p>
+<p>所以就要求要可以改变，所以在上面wxml中设置变量，</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//地区选择器  当mode=‘region’时为省市区选择器效果</span></span><br><span class="line">&lt;picker mode='region' bindchange='changeRegion'&gt;  //绑定函数</span><br><span class="line">    &lt;view&gt;&#123;&#123;region&#125;&#125;&lt;/view&gt;                  //写成变量</span><br><span class="line">  &lt;/picker&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后这个需要在.js文件中添加函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    region:['北京市','北京市','东城区'],     //默认值</span><br><span class="line">    now:<span class="string">''</span></span><br><span class="line"> &#125;, </span><br><span class="line"> changeRegion:function(e)&#123;              <span class="comment">//函数，接受到改变事件e</span></span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      region:e.detail.value     <span class="comment">//当value改变时触发change事件</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>完整js代码（不懂就看注释）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pages/index/index.js</span></span><br><span class="line">Page(&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 页面的初始数据</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  data: &#123;</span><br><span class="line">    region:[<span class="string">'北京市'</span>,<span class="string">'北京市'</span>,<span class="string">'东城区'</span>],</span><br><span class="line">    now:<span class="string">''</span>             <span class="comment">//这里什么都不取，下面直接更新</span></span><br><span class="line">  &#125;,</span><br><span class="line">  changeRegion:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      region:e.detail.value</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">this</span>.getWeater(); </span><br><span class="line">    <span class="comment">//就是刚才下面的那个函数返回后调用 更新天气，而这里用的就是this，刚才那个that只在刚才那个函数中有效，this是全局的</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//完成网络请求</span></span><br><span class="line">  getWeater:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> that=<span class="keyword">this</span>; </span><br><span class="line">    <span class="comment">//this不可以直接在wxAPI函数内部使用，所以重新定义一个变量that来指代this，注：var是全局变量，let是局部变量</span></span><br><span class="line">    <span class="comment">//请求函数</span></span><br><span class="line">    wx.request(&#123;</span><br><span class="line">      url: <span class="string">'https://free-api.heweather.net/s6/weather/now?'</span>,</span><br><span class="line">      <span class="comment">//要的是全国的天气，而不是北京的天气，所以只需要保留前半段</span></span><br><span class="line">      data:&#123;</span><br><span class="line">        location:that.data.region[<span class="number">1</span>],</span><br><span class="line">        <span class="comment">//和风天气查询到市，所以上面的那个region数组中第2个是市级，编号从0开始，而这里that就是刚才的定义的全局变量</span></span><br><span class="line">        key:<span class="string">'c374ba9769f64327b71e5dab4f4e00d9'</span></span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">      <span class="comment">//如果请求数据成功则带回来</span></span><br><span class="line">      success:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="comment">// console.log(res.data) //带回来的数据返回输出到控制台上，</span></span><br><span class="line">        that.setData(&#123;<span class="attr">now</span>:res.data.HeWeather6[<span class="number">0</span>].now&#125;)                          <span class="comment">//直接修改now的值</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面加载</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  onLoad: <span class="function"><span class="keyword">function</span> (<span class="params">options</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.getWeater();                   <span class="comment">//只要打开小程序页面就会加载，</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><strong>新知识：地区选择器：picker</strong> </li>
+</ul>
+<p><code>&lt;picker&gt;</code>从底部弹起的滚动选择器组件，目前根据mode属性值的不同共支持5种选择器，分别是<strong><em>普通选择器，多列选择器，时间选择器，日期选择器，省市区选择器</em></strong>。若省略mode值不写，则默认效果是普通选择器。</p>
+<p><strong>省市区选择器</strong></p>
+<p><strong>当mode=‘region’时为省市区选择器效果</strong>（最低版本为1.4.0）</p>
+<p><img src="https://img-blog.csdnimg.cn/20200414172019216.png" alt="在这里插入图片描述"></p>
+<ul>
+<li><p>下来的一项就要开始调用api可以查询实时天气了，然后我们就可以把天气数据实时改变了，首先需要去到和风天气网站上注册一个账号然后自己新建一个应用管理，生成一个key，然后在根据自己的key生成一个api，（免费版的）eg：<a href="https://free-api.heweather.net/s6/weather/now?location=beijing&amp;key=c374ba9769f64327b71e5dab4f4e00d9" target="_blank" rel="noopener">https://free-api.heweather.net/s6/weather/now?location=beijing&amp;key=c374ba9769f64327b71e5dab4f4e00d9</a></p>
+</li>
+<li><p>然后在小程序的后台开发去添加服务域名，就可以使用了<img src="https://img-blog.csdnimg.cn/20200415154755885.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1Fpbmd6aGFvX2h3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+<li><p>知识点：</p>
+<p>1 调用函数：this.”函数名”(参数列表)<br>2 wx.requst({<br>   url:<br>   data:<br>   success:function(e){<br>通常先在控制台输出查看一下<br>   }<br>})<br>+<br>更改变量值</p>
+</li>
+</ul>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2020/04/15/blog9/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>怎么发布小程序...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-r.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2020/04/11/blog6/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>blog6</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+
+<footer>
+  <div>
+  Copyright &copy; 2019.<a href="/">庆昭</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button> 
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="https://ae01.alicdn.com/kf/H16588a5d05b04be29b8fe031826a347dp.jpg" alt="He Wen"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>He Wen</p>
+          <span class="tagline">不舍爱与自由！</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>Home</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+    
+    
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>Friends</span>
+        <ul>
+          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+
+
+</body>
+</html>

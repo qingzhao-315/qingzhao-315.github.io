@@ -155,7 +155,7 @@
 <li><p>图片的路径也可以写成变量，就是src，同样也写在data中</p>
 </li>
 <li><p>如果想更新变量内容，比如说获取昵称和头像就在原先定义的函数里去调用，修改变量的方法：this.setData({  })</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;.js中</span><br><span class="line">data: &#123;</span><br><span class="line">    name:&#39;Hello World&#39;,</span><br><span class="line">    src:&#39;&#x2F;images&#x2F;weixin.jpg&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  getMyInfo:function(e)&#123;</span><br><span class="line">    console.log(e.detail.userInfo)  &#x2F;&#x2F;后面不用逗号</span><br><span class="line">    let info&#x3D;e.detail.userInfo;  &#x2F;&#x2F;定义一个变量为取到的那个用户信息</span><br><span class="line">    this.setData(&#123;            </span><br><span class="line">      name:info.nickName,      &#x2F;&#x2F;更新名称</span><br><span class="line">      src:info.avatarUrl        &#x2F;&#x2F;更新图片来源</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;.js中</span><br><span class="line">data: &#123;</span><br><span class="line">    name:&#39;Hello World&#39;,</span><br><span class="line">    src:&#39;&#x2F;images&#x2F;weixin.jpg&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  getMyInfo:function(e)&#123;</span><br><span class="line">    console.log(e.detail.userInfo)  &#x2F;&#x2F;后面不用逗号</span><br><span class="line">    let info&#x3D;e.detail.userInfo;  &#x2F;&#x2F;定义一个变量为取到的那个用户信息，let就是定义一个变量，是局部变量</span><br><span class="line">    this.setData(&#123;            </span><br><span class="line">      name:info.nickName,      &#x2F;&#x2F;更新名称</span><br><span class="line">      src:info.avatarUrl        &#x2F;&#x2F;更新图片来源</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
 
 
 
@@ -173,12 +173,12 @@
 <div class="lx-navigation">
 	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.9/source/images/footer-l.jpeg)">
 		<div class="overlay"></div>
-		<a class="copy" href="#">
+		<a class="copy" href="/2020/04/11/blog6/">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Next</span>
-						<h3>No newer post</h3>
+						<h3>blog6</h3>
 					</div>
 				</div>
 			</div>
